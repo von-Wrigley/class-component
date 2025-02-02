@@ -10,7 +10,7 @@ export default class Header extends React.Component<{
   changeLink: ChangeForm;
 }>
  {
-  constructor(props) {
+  constructor(props: { info: Person; changeLink: ChangeForm;}) {
     super(props);
     const cachedValue = localStorage.getItem('name');
     this.state = {
