@@ -7,7 +7,7 @@ export default class Results extends React.Component<{
   homeLink: Link;
   allData: Person;
 }> {
-  constructor(props) {
+  constructor(props: { homeLink: Link; allData: Person }) {
     const { allData } = props;
     super(props)
     this.state = {
