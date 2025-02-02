@@ -6,11 +6,17 @@ interface ChangeForm {
 }
 
 export default class Header extends React.Component<{
-  info: Person;
-  changeLink: ChangeForm;
-}>
+    info: Person;
+    changeLink: ChangeForm;
+  },
+  { nameValue: string; homeLink: string }>
  {
-  constructor(props) {
+  constructor(props: {
+    info: Person;
+    changeLink: ChangeForm;
+    nameValue: string;
+    homeLink: string;
+  })  {
     super(props);
     const cachedValue = localStorage.getItem('name');
     this.state = {
