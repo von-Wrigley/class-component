@@ -5,27 +5,27 @@ import Main from './components/Main';
 import Spinner from './components/Spinner'
 
 export interface Person {
-  count: 82;
+  count: number;
   next: string;
-  previous: null;
+  previous: string;
   results: DeatilesPerson[];
 }
 interface DeatilesPerson {
-  birth_year: string;
-  created: string;
-  edited: string;
-  eye_color: string;
-  films: string[];
-  gender: string;
+  birth_year?: string;
+  created?: string;
+  edited?: string;
+  eye_color?: string;
+  films?: string[];
+  gender?: string;
   hair_color?: string;
-  height: string;
-  homeworld: string;
-  mass: string;
-  name: string;
-  skin_color: string;
+  height?: string;
+  homeworld?: string;
+  mass?: string;
+  name?: string;
+  skin_color?: string;
   species?: string[];
   starships?: string[];
-  url: string;
+  url?: string;
   vehicles?: string[];
 }
 export type Link = string | '';
@@ -34,10 +34,10 @@ export default class App extends React.Component<
   {},
   { data: Person; homeLink: Link; loading: boolean }
 > {
-  constructor(props) {
+  constructor(props: {data: Person; homeLink: Link; loading: boolean } ) {
     super(props);
     this.state = {
-      data: [],
+      data: {} as Person,
       homeLink: '',
       loading: false,
     };
