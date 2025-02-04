@@ -31,7 +31,7 @@ interface DeatilesPerson {
 export type Link = string | '';
 
 export default class App extends React.Component<
-  {},
+   Record<string, unknown>,
   { data: Person; homeLink: Link; loading: boolean }
 > {
   constructor(props: {data: Person; homeLink: Link; loading: boolean } ) {
