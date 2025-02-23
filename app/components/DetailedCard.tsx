@@ -1,3 +1,8 @@
+import { useContext } from "react";
+import { useGetPeopleQuery } from "../api/StarWarsAPI";
+import { Context } from "../context";
+import type { Dispatch, SetStateAction } from "react";
+
 
 interface DeatilesPerson {
   birth_year?: string;
@@ -19,23 +24,51 @@ interface DeatilesPerson {
 }
 
 
-function DetailedCard({data, setButton}:any) {
 
-
- const cachedValue = localStorage.getItem('name');
-  return (
- 
-      <div id="compDeatiled"  className='border ml-1.5 min-w-[15vw] rounded'>
-               
-                {data.filter((x:DeatilesPerson)=>x.name === cachedValue).map((d:DeatilesPerson, index:number)=>(<div key={index} className='bg-black text-amber-50  px-5.5'>
-                    <h3 className="text-3xl">{d.name}</h3> 
-                    <p>Height: {d.height}</p> 
-                    <p>Weight: {d.mass}</p>
-                  </div>))}
-                  <button type="button" className='border bg-black text-amber-50 hover:bg-neutral-600 hover:cursor-pointer' onClick={()=>setButton((prev:boolean)=>!prev)}>закрыть</button>
-              </div>
-  
-  )
+type fff ={
+  setUseOpen: Dispatch<SetStateAction<boolean>>, 
+  name:string | undefined,
 }
 
-export default DetailedCard
+
+// interface Setus {
+//   setUseOpen: Dispatch<SetStateAction<boolean>>, 
+// }
+
+
+const  DetailedCard = ({setUseOpen, name}: fff)=> {
+const theme = useContext(Context)
+const params = new URLSearchParams(document.location.search);
+const pageCurrent = parseInt(params.get('page') as string)
+console.log(params)
+
+  const {data} = useGetPeopleQuery(pageCurrent)
+    
+  console.log(data)
+
+  const dataValues:undefined | DeatilesPerson[]= data?.results 
+  const selectedArray = []
+  for (const value of dataValues as  DeatilesPerson[]  ) {
+    if( name?.includes(value.name as string))  {
+              selectedArray.push(value)
+    }   
+   
+  }
+ 
+ 
+    return (
+   
+        <div id="compDeatiled"  className='border ml-1.5 min-w-[15vw] rounded '>
+                 {selectedArray.map((x)=> (
+                    <div key={x.height}>
+                      <p>eye color : {x.eye_color}</p>
+                      <p>gender: {x.gender}</p>
+                    </div>
+                  ))}
+               
+                    <button type="button" className={theme === 'light' ? 'lightButton' : 'blackButton'}  onClick={()=>setUseOpen((prev:boolean)=>!prev)}>закрыть</button>
+                </div>
+    
+    )
+  }
+  export default DetailedCard
