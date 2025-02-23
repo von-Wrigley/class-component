@@ -4,7 +4,7 @@ export default [
 
   
   
-index( 'routes/App.tsx'),
+index( 'Pages/App.tsx'),
 
  
    
