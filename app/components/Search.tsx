@@ -1,4 +1,5 @@
-import { useState } from "react";
+import {  useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 
 
@@ -29,44 +30,46 @@ interface DeatilesPerson {
 }
 export type Link = string | '';
 
-type myAdd = (x:string) => void
+
 interface MyClassProps {
-  getdata: myAdd;
+  getData: Dispatch<SetStateAction<string>>
 
 }
 
-function Search({getdata}:MyClassProps) {
+function Search({getData}:MyClassProps) {
   const[value, setValue] =useState('')
 
- 
 
-function handleSubmit(event: React.FormEvent<HTMLFormElement>){
-  event.preventDefault();
-  getdata(value)
-  localStorage.setItem('name', value);
+
+const handleSubmit=(e: React.FormEvent<HTMLFormElement>)=>{
+  e.preventDefault();
+ getData(value)
 }
+
 
   return (
     
     <>
    <div className="ml-auto mt-2 mr-auto max-w-fit">
    <form
-        className="border items-center  p-3 flex flex-row gap-0.5 min-w-[30vw] rounded-2xl bg-gray-300 "
+   name="Search"
+        className="border items-center  p-5 flex flex-row gap-5 min-w-[30vw] rounded-2xl bg-gray-300 "
         onSubmit={handleSubmit}>
+      
       <label>
-        Name:
+        Name:  
         <input
-        className=" hover:bg-white rounded-md "
+        className=" rounded-md p-2.5 ml-2.5 hover:tetx-black "
           required
           type="text"
-          name="name"
+          name={value}
+          id="inputSearch"
           value={value}
           onChange={(e)=> setValue(e.target.value)}
         />
       </label>
-      <input type="submit" value="Search" className="bg-white p-2.5 rounded-md hover:cursor-pointer "/>
+      <input type="submit" value="Search" name="search" id="search" className="bg-white rounded-md hover:cursor-pointer text-black p-2.5"/>
     </form>
-
    </div>
     
   </>
@@ -74,11 +77,3 @@ function handleSubmit(event: React.FormEvent<HTMLFormElement>){
 }
 
 export default Search
-
-
-
-
-
-
-
-
