@@ -1,8 +1,8 @@
 import {  useState } from 'react'
 import './App.css'
-import Search from '../Components/Search'
-import CardList from '../Components/CardList'
-import SelectedCards from '../Components/SelectedCards'
+import Search from '../components/Search'
+import CardList from '../components/CardList'
+import SelectedCards from '../components/SelectedCards'
 import {  useAppSelector } from "../hooks"
 import { Context } from '../context'
 
