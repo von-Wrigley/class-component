@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { useGetPeopleQuery } from "../api/StarWarsAPI";
 import { Context } from "../context";
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
+
+
 interface DeatilesPerson {
   birth_year?: string;
   created?: string;
