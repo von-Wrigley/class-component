@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './Pages/App.tsx'
+import App from './Pages/App'
 import { BrowserRouter, Routes, Route } from "react-router";
-import Problem from './Pages/Problem.tsx';
+import Problem from './Pages/Problem';
 import { Provider } from 'react-redux'
-import { store } from './store.ts';
+import { store } from './store';
 
 
 
