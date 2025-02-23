@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
 
-import DetailedCard from './DetailedCard';
 import Card from './Card';
+import { useGetPeopleQuery } from '../api/StarWarsAPI';
+import Spinner from './Spinner';
+import Pagination from './Pagination';
+
+
 
 
 export interface Person  {
@@ -34,50 +37,57 @@ interface DeatilesPerson {
 
 
 interface MyProps {
-  data: DeatilesPerson[];
   value:string;
 }
 
 
 
-export default function CardList({data, value}:MyProps){
+export default function CardList({value}: MyProps){
 
- const [useOpen, setUseOpen] =useState(false)
+    
+ 
+ 
+ const itemsPerPage=3;
+ const params = new URLSearchParams(document.location.search);
+//  const [searchQuery, setSearchQuery] = useState(searchParams.get("page"));
+const pageCurrent = parseInt(params.get('page') as string)
+const {data, isLoading} = useGetPeopleQuery(pageCurrent)
+ 
+ 
 
-const localStorageValue = localStorage.getItem("name")
 
+
+ 
+ const startIndex = (pageCurrent - 1) * itemsPerPage;
+ const endIndex = startIndex + itemsPerPage;
+ const currentItems = data?.results.slice(startIndex, endIndex);
+
+
+
+
+
+
+if(isLoading) return <Spinner />
     return (
-   <>
-     
-        
+   <>      
+   
+{ value  &&   currentItems?.filter(x=>x.name === value ).map( (x, index)=> 
+<div key={index} className='border rounded flex flex-row gap-5 mb-6 bg-black text-amber-100 justify-evenly'>
+    <p>{x.name}</p>
+    </div> )}
+            
+  { value === '' && <div className=' flex flex-col p-2'>
+           {currentItems?.map((info)=> (<Card  info={info} key={info.height}  />)   ) }
+           </div>}
 
-      
-      <div className='flex flex-row'>
-        <div className=' w-[30vw]'>
-        {value ==="" ? (data.map((d, index:number)=>(
-          <div key={index} className=' flex flex-col gap-5'>
-            <p className='bg-black rounded text-amber-100 text-3xl p-3.5 mb-3.5'>{d.name}
-              </p> 
-         </div>)
-        ))
-        
-        : <Card data={data} setButton={setUseOpen}/>
-        }
-        </div>
-        
-        
-          {useOpen===true &&  <p>
-            <DetailedCard data={data} setButton={setUseOpen}  useOpen={useOpen}/>
-         
-          </p> }
 
-      </div> 
-       {/* <Pagination /> */}
+  
+
+       <Pagination />
   
        
 
-     </>
+</>
 
 )
 }
-
