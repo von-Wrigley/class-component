@@ -1,10 +1,17 @@
+/* eslint-disable react-refresh/only-export-components */
+
+import { Suspense } from 'react'
 import {  useState } from 'react'
-import './App.css'
-import Search from '../components/Search'
-import CardList from '../components/CardList'
-import SelectedCards from '../components/SelectedCards'
+import Search from '../Components/Search'
+import CardList from '../Components/CardList'
+import SelectedCards from '../Components/SelectedCards'
 import {  useAppSelector } from "../hooks"
 import { Context } from '../context'
+import type { InferGetStaticPropsType, GetStaticProps } from 'next'
+import Loading from './loading'
+import { ParsedUrlQuery } from "querystring";
+
+
 
 export interface Person {
   count: number;
@@ -30,8 +37,32 @@ export interface DeatilesPerson {
   url?: string;
   vehicles?: string[];
 }
+interface Params extends ParsedUrlQuery {
+  query: string;
+}
 
-function App() {
+
+
+export const getStaticProps: GetStaticProps = (async (context) => {
+  const query = context.params as Params
+  
+   const page = query || 1;
+  const res = await fetch(`https://swapi.dev/api/people?page=${page}`)
+  const data = await res.json()
+  return { props: { data, 
+                    currentPage: page, 
+                    totalPages: data.results.length,
+
+   } }
+}) satisfies GetStaticProps<{
+  data: Person
+}>
+
+
+
+export default function Page({
+  data, totalPages
+}: InferGetStaticPropsType<typeof getStaticProps>) {
  
 
 const [theme, setTheme] = useState<string>('light');
@@ -54,12 +85,12 @@ function toggleStyle() {
 
 
 
-const Slectedpeople = useAppSelector(state => state.selected)
-
+const Slectedpeople = useAppSelector(state => state.selected.selectedPeople)
+console.log(Slectedpeople)
 
   return (
     <>
-    
+
       <Context.Provider  value={theme}>
            <div className='flex flex-row   justify-between' >  
             <h1 className={theme === 'light' ? 'ClassLight' : 'ClassBlack'}>Star Wars</h1>
@@ -67,12 +98,12 @@ const Slectedpeople = useAppSelector(state => state.selected)
             </div>   
          
       <Search getData={getData}/>
-      <CardList  value={searchData}/>
+      <Suspense fallback={<Loading />}> <CardList  value={searchData}  data={data} totalPages={totalPages}    />
 
-          {Slectedpeople.length > 0 && <SelectedCards />}  
+          {Slectedpeople.length > 0 && <SelectedCards />}   </Suspense>
       </Context.Provider>
       
-    
+     
 
 
       
@@ -84,5 +115,5 @@ const Slectedpeople = useAppSelector(state => state.selected)
   )
 }
 
-export default App
+
 
