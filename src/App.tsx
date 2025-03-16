@@ -1,82 +1,86 @@
-import React from "react";
-import Header from './components/Header';
+import { NavLink } from 'react-router';
 import './App.css';
-import Main from './components/Main';
-import Spinner from './components/Spinner'
+import { useAppSelector } from './hooks';
+import { Check } from './UncontrolledForm';
+import { IFormInput } from './ControlledForm';
 
-export interface Person {
-  count: number;
-  next: string;
-  previous: string;
-  results: DeatilesPerson[];
+function App() {
+  const selected = useAppSelector((state) => state.uncontolledFormation.form);
+
+  const selectedHookForm = useAppSelector(
+    (state) => state.controlledFormation.form
+  );
+
+  return (
+    <>
+      <h1>Forms</h1>
+      <div className="my-3 py-2 ">
+        <NavLink className="mr-5" to="/uncontrolform">
+          uncontrolform
+        </NavLink>
+
+        <NavLink to="/controlform">controlform</NavLink>
+      </div>
+
+      <div className="grid gap-10 justify-items-start p-8">
+        <div className="bg-pink-100 flex flex-row gap-4 text-black p-3">
+          <h3>Uncontrolled Form</h3>
+          {selected.map((x: Check, index: number) => (
+            <div
+              key={index}
+              className="grid  gap-3  border-2 hover:shadow-2xl p-5 justify-items-start last:bg-amber-300 "
+            >
+              <p>Name: {x.name}</p>
+              <p>Age: {x.age}</p>
+              <p>Email: {x.email}</p>
+              <p>Password: {x.password}</p>
+              {x.terms === true ? (
+                <p>You accepted terms</p>
+              ) : (
+                <p>You didnt accep terms</p>
+              )}
+              <p>Gender: {x.gender}</p>
+              <p>Country: {x.country}</p>
+              <img
+                width={100}
+                height={100}
+                alt="Logo"
+                src={`data:image/png;base64,${x.img}`}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-pink-100 flex flex-row gap-4 text-black p-3">
+          <h3>React Hook Form</h3>
+          {selectedHookForm.map((x: IFormInput, index: number) => (
+            <div
+              key={index}
+              className="grid  gap-3  border-2 hover:shadow-2xl p-5 justify-items-start last:bg-amber-300 "
+            >
+              <p>Name: {x.name}</p>
+              <p>Age: {x.age}</p>
+              <p>Email: {x.email}</p>
+              <p>Password: {x.password}</p>
+              {x.terms === true ? (
+                <p>You accepted terms</p>
+              ) : (
+                <p>You didnt accep terms</p>
+              )}
+              <p>Gender: {x.gender}</p>
+              <p>Country: {x.country}</p>
+              <img
+                width={300}
+                height={300}
+                alt="Logo"
+                src={`data:image/png;base64,${x.image64}`}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
 }
-interface DeatilesPerson {
-  birth_year?: string;
-  created?: string;
-  edited?: string;
-  eye_color?: string;
-  films?: string[];
-  gender?: string;
-  hair_color?: string;
-  height?: string;
-  homeworld?: string;
-  mass?: string;
-  name?: string;
-  skin_color?: string;
-  species?: string[];
-  starships?: string[];
-  url?: string;
-  vehicles?: string[];
-}
-export type Link = string | '';
 
-export default class App extends React.Component<
-  {},
-  { data: Person; homeLink: Link; loading: boolean }
-> {
-  constructor(props: {data: Person; homeLink: Link; loading: boolean } ) {
-    super(props);
-    this.state = {
-      data: {} as Person,
-      homeLink: '',
-      loading: false,
-    };
-
-  }
-  componentDidMount() {
-    this.fetchDataStarsWars();
-  }
-  fetchDataStarsWars = async () => {
-    try {
-      this.setState({ loading: true });
-      const response = await fetch('https://swapi.dev/api/people/');
-      const data = await response.json();
-      // const nwData = data.results
-      this.setState({ loading: false });
-      this.setState({ data: data });
-      // console.log(data);
-    } catch (error) {
-      this.setState({ loading: false });
-      console.error('Error:', error);
-    }
-  };
-
-  onChangeLinkName(newName: Link) {
-    this.setState({ homeLink: newName });
-  }
-  render() {
-    return (
-      <>
-        <Header
-          info={this.state.data}
-          changeLink={this.onChangeLinkName.bind(this)}
-        />
-        {this.state.loading ? (
-          <Spinner />
-        ) : (
-          <Main homeLink={this.state.homeLink} allData={this.state.data} />
-        )}
-      </>
-    );
-  }
-}
+export default App;
