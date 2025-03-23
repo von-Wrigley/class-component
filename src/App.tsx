@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import CountryCard from './CountryCard';
+import CountryCardMemo from './CountryCard';
 import type { Countries } from './countries';
+import { useMemo } from 'react';
+import { useCallback } from 'react';
 
 function App() {
   const [data, setData] = useState<Countries[]>();
@@ -19,45 +21,54 @@ function App() {
     fetchData();
   }, []);
 
-  const countriesValues = (x: Countries[]) => {
-    if (sortname === 'Ascending') {
-      const name2 = x?.sort((a, b) =>
-        a.name.common.localeCompare(b?.name?.common)
-      );
+  const handleSelectRegion = useCallback(
+    (data: Countries[]) => {
+      const serachByValue = data?.filter((x) => {
+        const selectByRegion =
+          !selectedRegion ||
+          selectedRegion === 'All regions' ||
+          x.region === selectedRegion;
+        const incudedSearch =
+          !searchValue || x?.name?.common?.includes(searchValue as string);
+        return incudedSearch && selectByRegion;
+      });
+      return serachByValue;
+    },
+    [selectedRegion, searchValue]
+  );
 
-      return name2;
-    }
-    if (sortname === 'Descending') {
-      const popul2 = serachByValue?.sort((a, b) =>
-        b.name.common.localeCompare(a?.name?.common)
-      );
+  const requirements = useMemo(() => {
+    return handleSelectRegion(data as Countries[]);
+  }, [handleSelectRegion, data]);
 
-      return popul2;
-    }
-  };
-
-  const serachByValue = data?.filter((x) => {
-    const selectByRegion =
-      !selectedRegion ||
-      selectedRegion === 'All regions' ||
-      x.region === selectedRegion;
-    const incudedSearch =
-      !searchValue || x?.name?.common?.includes(searchValue as string);
-    return incudedSearch && selectByRegion;
-  });
-
-  const populatioValue = (q: Countries[]) => {
+  const handlePopulation = useCallback(() => {
     if (sortPopulation === 'Ascen') {
-      const x = q?.sort((a, b) => a?.population - b?.population);
+      const x = requirements?.sort((a, b) => a?.population - b?.population);
       return x;
     }
     if (sortPopulation === 'Descen') {
-      const x = q?.sort((a, b) => b?.population - a?.population);
+      const x = requirements?.sort((a, b) => b?.population - a?.population);
       return x;
     }
-  };
-  populatioValue(serachByValue as Countries[]);
-  countriesValues(serachByValue as Countries[]);
+  }, [sortPopulation, requirements]);
+
+  const handleName = useCallback(() => {
+    if (sortname === 'Ascending') {
+      const name2 = requirements?.sort((a, b) =>
+        a.name.common.localeCompare(b?.name?.common)
+      );
+      return name2;
+    }
+    if (sortname === 'Descending') {
+      const popul2 = requirements?.sort((a, b) =>
+        b.name.common.localeCompare(a?.name?.common)
+      );
+      return popul2;
+    }
+  }, [requirements, sortname]);
+
+  handlePopulation();
+  handleName();
 
   return (
     <>
@@ -113,7 +124,7 @@ function App() {
                 id="sortingName"
                 className="text-white"
                 onChange={(e) => setSortName(e.target.value)}
-                onClick={() => countriesValues(serachByValue as Countries[])}
+                onClick={handleName}
                 value={sortname}
               >
                 <option className="text-black">Name</option>
@@ -130,7 +141,7 @@ function App() {
                 id="sortingPopulation"
                 className="text-white"
                 onChange={(e) => setSortPopulation(e.target.value)}
-                onClick={() => populatioValue(serachByValue as Countries[])}
+                onClick={handlePopulation}
               >
                 <option className="text-black">Population</option>
                 <option value="Ascen" className="text-black">
@@ -148,8 +159,12 @@ function App() {
           {data?.length === 0 ? (
             <p>No results</p>
           ) : (
-            serachByValue?.map((x) => (
-              <CountryCard data={x} key={x.name.common} unId={x.name.common} />
+            requirements?.map((x) => (
+              <CountryCardMemo
+                data={x}
+                key={x.name.common}
+                unId={x.name.common}
+              />
             ))
           )}
         </div>
