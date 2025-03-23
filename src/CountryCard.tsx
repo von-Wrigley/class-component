@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { useLocalStorage } from './LocStorHook';
 import type { Countries } from './countries';
+import { memo } from 'react';
 
 type CountryCardType = {
   data: Countries;
   unId: string;
 };
 
-function CountryCard({ data, unId }: CountryCardType) {
+const CountryCardMemo = memo(function CountryCard({
+  data,
+  unId,
+}: CountryCardType) {
   const [name, setName] = useLocalStorage('country', []);
   const [visited, isVisited] = useState<boolean>(false);
   const handleLocal = (x: string) => {
@@ -32,9 +36,7 @@ function CountryCard({ data, unId }: CountryCardType) {
     >
       <div className="flex flex-row gap-3">
         <div className="flex flex-col">
-          <h3>{data.name.common}</h3>
-          <p>Area: {data.area}</p>
-          <p>Area: {data.ccn3}</p>
+          <h3 className="font-bold">{data.name.common}</h3>
           <p>Region: {data.region}</p>
           <p> Population: {Number(data.population).toLocaleString()}</p>
         </div>
@@ -42,6 +44,6 @@ function CountryCard({ data, unId }: CountryCardType) {
       </div>
     </div>
   );
-}
+});
 
-export default CountryCard;
+export default CountryCardMemo;
