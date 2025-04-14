@@ -1,10 +1,10 @@
 # Postman Clone
-------------
+
 
 This project is a group final assignment for the React 2025 course at app.rs.school.
 
 ## ✨ Project Overview
-------------
+
 Postman is a comprehensive API development ecosystem that empowers users to consume, design, test, and manage APIs efficiently. More than just a testing tool, it provides end-to-end solutions for the entire API lifecycle.
 
 - The platform provides tools to  construct and dispatch API requests
@@ -14,7 +14,7 @@ Postman is a comprehensive API development ecosystem that empowers users to cons
 - Re-run past calls with one click.
 
 ## ✨ Core Tools
-------------
+
 
 + [httpsnippet](https://github.com/readmeio/httpsnippet)
    - A tool that automatically creates ready-to-use code snippets for making HTTP calls in various programming languages
@@ -36,7 +36,6 @@ Postman is a comprehensive API development ecosystem that empowers users to cons
 
 
 ## ✨ Development Tools
-------------
 
 + [eslint](https://eslint.org/docs/latest/use/configure/), [eslint-config-next](https://nextjs.org/docs/app/api-reference/config/eslint), [eslint-config-prettier](https://prettier.io/docs/integrating-with-linters)
    - A set of tools for linting and sorting imports, as well as checking code for compliance with standards and formatting.
@@ -74,14 +73,14 @@ Postman is a comprehensive API development ecosystem that empowers users to cons
   
 
 ## ✨ Technical Specifications
-------------
+
  1. Frontend Framework: React 19 and NextJS
  2. Design: SASS
  3. Multilingual Support: User interface available in Russian, English, Georgian, German and Polish. 
  4. Responsive Design: Optimized for various device sizes
 
 ## ✨ Technical Details
-------------
+
 - Libraries and Frameworks
    In addition to React, the following libraries and frameworks were used:
    - Next: Make calls to the endpoint through the server.
@@ -98,7 +97,7 @@ The application was tested using both manual testing and automated tests:
    - Automated Tests: Created using Jest to ensure the correct functionality of individual components and services. These tests cover unit testing for functions, components, and services to verify their behavior under different scenarios.
 
 ## ✨ Description of function blocks
-------------
+
 
 ### 💻 Main page
 - **For unauthorized users**, the page includes a link to the authentication page (`Sign In / Sign Up`).  
