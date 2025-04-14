@@ -13,8 +13,53 @@ Postman is a comprehensive API development ecosystem that empowers users to cons
 - Auto-saves recent requests (filterable by date/method).
 - Re-run past calls with one click.
 
-## ✨ Core Tools
+## ✨ Technical Specifications
 
+ 1. Frontend Framework: React 19 and NextJS
+ 2. Design: SASS
+ 3. Multilingual Support: User interface available in Russian, English, Georgian, German and Polish. 
+ 4. Responsive Design: Optimized for various device sizes
+
+## ✨ Technical Details
+
+- Libraries and Frameworks
+   In addition to React, the following libraries and frameworks were used:
+   - Next: Make calls to the endpoint through the server.
+   - Redux: For state management, ensuring a predictable and consistent state throughout the application.
+   - HTTP Snippet: Snippet generator for languages (cURL, Javascript, Node, Java, Python, C#, Go)
+   - Internationalization for Next.js: Offer content in multiple languages(Russian, English, Georgian, German and Polish)
+
+- State Management
+  The application uses Redux for managing the global state, making use of reducers, actions, and selectors to handle complex state transitions in a predictable manner.
+
+- Testing Methods
+The application was tested using both manual testing and automated tests:
+   - Manual Testing: Conducted by the team to verify the user interface, interactions, and overall functionality of the application.
+   - Automated Tests: Created using Jest to ensure the correct functionality of individual components and services. These tests cover unit testing for functions, components, and services to verify their behavior under different scenarios.
+
+## ✨ Description of function blocks
+
+### 💻 Main page
+- **For unauthorized users**, the page includes a link to the authentication page (`Sign In / Sign Up`).  
+- **For authorized users**, the page provides navigation to the **RESTful client** and **History** routes.  
+
+### 🔐 Sign In / Sign Up
+- **After Successful Login**: The user is automatically redirected to the **Main page**.    
+- **Already Logged In**: Any attempts to access auth routes (`/login`, `/signup`) the user is redirected to the **Main page**.
+
+### 🌐 RESTful client
+- Provides an easy way to construct and make different requests
+- Produces ready-to-use code snippets for requests 
+- Displays the HTTP response code and its associated status message.
+
+### 📓 Variables
+- Supports variable substitution in URLs, bodies, and headers.
+
+### 📜 History
+- Section restores complete request configurations for reuse, including HTTP method, URL, body content and header values.
+- The History section displays requests in chronological order based on execution time.
+
+## ✨ Core Tools
 
 + [httpsnippet](https://github.com/readmeio/httpsnippet)
    - A tool that automatically creates ready-to-use code snippets for making HTTP calls in various programming languages
@@ -61,7 +106,6 @@ Postman is a comprehensive API development ecosystem that empowers users to cons
 + [ts-jest](https://www.npmjs.com/package/@types/jest)
     - A transformer for Jest that includes source map support, allowing TypeScript code to be tested."
 
-
 + [husky](https://typicode.github.io/husky/)
     - Automatically validate commit messages, analyze code quality, and execute test suites during commit/push operations.
 
@@ -71,55 +115,6 @@ Postman is a comprehensive API development ecosystem that empowers users to cons
 + [prettier](https://prettier.io/)
     - Prettier is an opinionated code formatter that automatically standardizes your code style for consistent readability.
   
-
-## ✨ Technical Specifications
-
- 1. Frontend Framework: React 19 and NextJS
- 2. Design: SASS
- 3. Multilingual Support: User interface available in Russian, English, Georgian, German and Polish. 
- 4. Responsive Design: Optimized for various device sizes
-
-## ✨ Technical Details
-
-- Libraries and Frameworks
-   In addition to React, the following libraries and frameworks were used:
-   - Next: Make calls to the endpoint through the server.
-   - Redux: For state management, ensuring a predictable and consistent state throughout the application.
-   - HTTP Snippet: Snippet generator for languages (cURL, Javascript, Node, Java, Python, C#, Go)
-   - Internationalization for Next.js: Offer content in multiple languages(Russian, English, Georgian, German and Polish)
-
-- State Management
-  The application uses Redux for managing the global state, making use of reducers, actions, and selectors to handle complex state transitions in a predictable manner.
-
-- Testing Methods
-The application was tested using both manual testing and automated tests:
-   - Manual Testing: Conducted by the team to verify the user interface, interactions, and overall functionality of the application.
-   - Automated Tests: Created using Jest to ensure the correct functionality of individual components and services. These tests cover unit testing for functions, components, and services to verify their behavior under different scenarios.
-
-## ✨ Description of function blocks
-
-
-### 💻 Main page
-- **For unauthorized users**, the page includes a link to the authentication page (`Sign In / Sign Up`).  
-- **For authorized users**, the page provides navigation to the **RESTful client** and **History** routes.  
-
-### 🔐 Sign In / Sign Up
-- **After Successful Login**: The user is automatically redirected to the **Main page**.    
-- **Already Logged In**: Any attempts to access auth routes (`/login`, `/signup`) the user is redirected to the **Main page**.
-
-### 🌐 RESTful client
-- Provides an easy way to construct and make different requests
-- Produces ready-to-use code snippets for requests 
-- Displays the HTTP response code and its associated status message.
-
-### 📓 Variables
-- Supports variable substitution in URLs, bodies, and headers.
-
-### 📜 History
-- Section restores complete request configurations for reuse, including HTTP method, URL, body content and header values.
-- The History section displays requests in chronological order based on execution time.
-
-
 ## ✨ Conclusion
 
   - Key Takeaways and Skills Acquired
