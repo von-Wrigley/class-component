@@ -4,7 +4,7 @@
 ## 💁 Team Member Contributions
  
    - **Tatsiana Verkhova**  / [tati-moon](https://github.com/tati-moon)
-                 - Responsible for solving technical issues, ensuring that complex problems were addressed promptly and effectively.
+       - Responsible for solving technical issues, ensuring that complex problems were addressed promptly and effectively.
    - **David Gogua** / [crociatofaf](https://github.com/crociatofaf)
   
    - **Elina Melkonian**  / [von-wrigley](https://github.com/von-wrigley)
