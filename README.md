@@ -1,5 +1,4 @@
-# Postman Clone
-
+<details><summary># Postman Clone</summary>
 
 This project is a group final assignment for the React 2025 course at app.rs.school.
 
@@ -123,3 +122,4 @@ The application was tested using both manual testing and automated tests:
 
   - Questions and Answers
       We encourage any questions or feedback on the project! Please feel free to open an issue or reach out to any team member through GitHub.
+</details>
