@@ -1,7 +1,7 @@
 
 <details><summary>About developers and Teamwork:</summary>
 
-## 💁Team Member Contributions
+## 💁 Team Member Contributions
  
    - **Tatsiana Verkhova**  / [tati-moon](https://github.com/tati-moon)
 
@@ -9,7 +9,7 @@
   
    - **Elina Melkonian**  / [von-wrigley](https://github.com/von-wrigley)
 
-## 📒Team Working Process
+## 📒 Team Working Process
 
 1. **Task Management**  
 We tracked tasks, assigned priorities, delegated team members, and estimated timelines using a shared Google Sheets document.
