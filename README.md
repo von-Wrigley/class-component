@@ -1,3 +1,30 @@
+
+<details><summary>About developers and Teamwork:</summary>
+
+## 💁Team Member Contributions
+ 
+   - **Tatsiana Verkhova**  / [tati-moon](https://github.com/tati-moon)
+
+   - **David Gogua** / [crociatofaf](https://github.com/crociatofaf)
+  
+   - **Elina Melkonian**  / [von-wrigley](https://github.com/von-wrigley)
+
+## 📒Team Working Process
+
+1. **Task Management**  
+We tracked tasks, assigned priorities, delegated team members, and estimated timelines using a shared Google Sheets document.
+
+2. **Discussions**  
+Quick communication and all discussions took place in the Discord channel.
+
+3. **Meetings**  
+Regular Google Meet sessions were scheduled every few days to review progress, resolve challenges, and plan future tasks.
+
+4. **Code Collaboration**  
+All code changes were submitted via GitHub pull requests, followed by detailed reviews to ensure quality and maintain consistency in the project.
+
+</details>
+
 <details><summary>Postman Clone</summary>
 
 # Postman Clone
