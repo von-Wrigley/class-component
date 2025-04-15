@@ -5,9 +5,12 @@
  
    - **Tatsiana Verkhova**  / [tati-moon](https://github.com/tati-moon)
        - Responsible for solving technical issues, ensuring that complex problems were addressed promptly and effectively.
+  
    - **David Gogua** / [crociatofaf](https://github.com/crociatofaf)
+       - Focused on fostering a positive team atmosphere, designing the application, and leading the testing efforts to ensure quality and usability.
   
    - **Elina Melkonian**  / [von-wrigley](https://github.com/von-wrigley)
+       - Managed the interaction between various system components and handled state management using Redux.
 
 ## 📒 Team Working Process
 
