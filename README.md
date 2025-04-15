@@ -1,4 +1,6 @@
-<details><summary># Postman Clone</summary>
+<details><summary>Postman Clone</summary>
+
+# Postman Clone
 
 This project is a group final assignment for the React 2025 course at app.rs.school.
 
